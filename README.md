@@ -5,7 +5,9 @@
 
 ------
 Based on Jamtaba from elieser A de Jesus , JomToBo is a free exploitation of ideas relative to online music Jam ,
-and study of Production and Distribution of collaborative music   .
+and study of Production and Distribution of collaborative music.  
+
+**Documentation** ( doxygen ) : http://makeitezeeah.esy.es/jomtobo/doc/index.html
 
 -----
 -----
