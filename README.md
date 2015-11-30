@@ -12,9 +12,9 @@ and study of Production and Distribution of collaborative music   .
 
 
 + Powered by   
- ![asio](https://cloud.githubusercontent.com/assets/1283808/11451416/d8887d70-95c5-11e5-820e-1da72af33bdf.png)  
+ [<img src="https://cloud.githubusercontent.com/assets/1283808/11451416/d8887d70-95c5-11e5-820e-1da72af33bdf.png">](http://www.asio4all.com/)  
 + Partner with  
- ![logo-active](https://cloud.githubusercontent.com/assets/1283808/11451429/38276d0e-95c6-11e5-9aea-c250fcbb57c7.png)
+[<img src="https://cloud.githubusercontent.com/assets/1283808/11451429/38276d0e-95c6-11e5-9aea-c250fcbb57c7.png">](http://ninbot.com/)
 
 
 
