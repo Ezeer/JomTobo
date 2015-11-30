@@ -1,15 +1,16 @@
-/*! \mainpage Configurator class for Jamtaba 2
+/*! \mainpage Jomtobo !
  *
  * \section intro_sec Introduction
  *
- * This is the first attempt to centralize the folders and files stuff in
- * one single class , very simple to use .
+ * Based on Jamtaba from elieser A de Jesus , JomToBo is a free exploitation of ideas relative to online music Jam , 
+ * and study of Production and Distribution of collaborative music .
+ * 
  *
  * \section install_sec Installation
  *
- * It should be installed by default in the version 2.0.6 of Jamtaba+
+ * Todo ....
  *
  * \subsection step1 Step 1: Opening the box
  *
- * etc...
+ *  Surprise ! 
  */
