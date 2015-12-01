@@ -322,6 +322,43 @@ void MainWindow::initializeMainTabWidget(){
 void MainWindow::on_channelNameChanged(){
     mainController->sendNewChannelsNames(getChannelsNames());
 }
+//JONJAMCONCEPT SPECIFIC
+LocalTrackGroupView* MainWindow::addMasterChannel(int channelGroupIndex, QString channelName, bool createFirstSubchannel)
+{
+    LocalTrackGroupView* localChannel = new LocalTrackGroupView(channelGroupIndex, this);
+    QObject::connect(localChannel, SIGNAL(nameChanged()), this, SLOT(on_channelNameChanged()));
+    QObject::connect(localChannel, SIGNAL(trackAdded()), this, SLOT(on_localTrackAdded()));
+    QObject::connect(localChannel, SIGNAL(trackRemoved()), this, SLOT(on_localTrackRemoved()));
+
+    controlSurfaceJTB.append( localChannel );
+
+    localChannel->setGroupName("Master");
+    ui.verticalLayout_5->addWidget(localChannel);
+
+    if(createFirstSubchannel){
+        LocalTrackView* localTrackView = new LocalTrackView(this->mainController, channelGroupIndex);
+        localChannel->addTrackView( localTrackView );
+
+        if(controlSurfaceJTB.size() > 1){
+            if(!mainController->isRunningAsVstPlugin()){
+                //in standalone the second channel is always initialized as noInput
+                localTrackView->setToNoInput();
+            }
+        }
+        else{
+            localTrackView->refreshInputSelectionName();
+        }
+    }
+
+    if(!fullViewMode && controlSurfaceJTB.count() > 1){
+        foreach (LocalTrackGroupView* trackGroup, controlSurfaceJTB) {
+            trackGroup->setToNarrow();
+        }
+    }
+
+    return localChannel;
+
+}
 
 LocalTrackGroupView *MainWindow::addLocalChannel(int channelGroupIndex, QString channelName, bool createFirstSubchannel){
     LocalTrackGroupView* localChannel = new LocalTrackGroupView(channelGroupIndex, this);
@@ -647,6 +684,7 @@ tracksCount=tracks.size();
 }
 
 void MainWindow::initializeLocalInputChannels(){
+    addMasterChannel(0,"Master",true);
     qCInfo(jtGUI) << "Initializing local inputs...";
     Persistence::InputsSettings inputsSettings = mainController->getSettings().getInputsSettings();
     int channelIndex = 0;
@@ -1519,5 +1557,21 @@ bool MainWindow::isTransmiting(int channelID) const{
 
 void MainWindow::on_collapseMasterTRK_clicked()
 {
+//on_localControlsCollapseButtonClicked();
+    int min = ui.stackedMasterTRK->sizeHint().width() + 12;
+    int max = min;
+    bool showingPeakMeterOnly = controlSurfaceJTB.first()->isShowingPeakMeterOnly();
+    Qt::ScrollBarPolicy scrollPolicy = Qt::ScrollBarAlwaysOff;
 
+    //limit the local inputs widget in mini mode
+    if(!showingPeakMeterOnly && !fullViewMode){
+        max = 180;
+        if(min > max){
+            min = max;
+            scrollPolicy = Qt::ScrollBarAlwaysOn;
+        }
+    }
+    ui.stackedMasterTRK->setMaximumWidth(max);
+    ui.stackedMasterTRK->setMinimumWidth(min);
+    ui.scrollArea->setHorizontalScrollBarPolicy(scrollPolicy);
 }

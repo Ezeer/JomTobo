@@ -229,6 +229,10 @@ private:
     //qint64 lastPerformanceMonitorUpdate;
     //static const int PERFORMANCE_MONITOR_REFRESH_TIME;
 
+    //JONJAMCONCEPT SPECIFIC
+    LocalTrackGroupView* addMasterChannel(int channelGroupIndex, QString channelName, bool createFirstSubchannel);
+
+
 };
 
 
