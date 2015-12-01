@@ -281,8 +281,23 @@
           <x>10</x>
           <y>10</y>
           <width>16</width>
-          <height>23</height>
+          <height>16</height>
          </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string>collapse/expand your controls ...</string>
         </property>
         <property name="styleSheet">
          <string notr="true">background-image: url(:/images/mini arrow right hover.png);</string>

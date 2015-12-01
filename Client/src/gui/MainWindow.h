@@ -164,6 +164,10 @@ protected slots:
 private slots:
     void on_actionFullscreenMode_triggered();
     void on_pluginFinderDialogCanceled();
+
+
+    void on_collapseMasterTRK_clicked();
+
 private:
 
     BusyDialog busyDialog;

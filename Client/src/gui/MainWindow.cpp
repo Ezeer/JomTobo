@@ -1517,3 +1517,7 @@ bool MainWindow::isTransmiting(int channelID) const{
 
 //++++++++++++
 
+void MainWindow::on_collapseMasterTRK_clicked()
+{
+
+}
