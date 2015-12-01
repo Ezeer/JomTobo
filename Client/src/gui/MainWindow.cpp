@@ -330,7 +330,7 @@ LocalTrackGroupView* MainWindow::addMasterChannel(int channelGroupIndex, QString
     QObject::connect(localChannel, SIGNAL(trackAdded()), this, SLOT(on_localTrackAdded()));
     QObject::connect(localChannel, SIGNAL(trackRemoved()), this, SLOT(on_localTrackRemoved()));
 
-    controlSurfaceJTB.append( localChannel );
+    //controlSurfaceJTB.append( localChannel );
 
     localChannel->setGroupName("Master");
     ui.verticalLayout_5->addWidget(localChannel);
@@ -684,7 +684,7 @@ tracksCount=tracks.size();
 }
 
 void MainWindow::initializeLocalInputChannels(){
-    addMasterChannel(0,"Master",true);
+
     qCInfo(jtGUI) << "Initializing local inputs...";
     Persistence::InputsSettings inputsSettings = mainController->getSettings().getInputsSettings();
     int channelIndex = 0;
@@ -739,6 +739,7 @@ void MainWindow::initializeLocalInputChannels(){
         addLocalChannel(0, "your channel", true);
     }
     qCInfo(jtGUI) << "Initializing local inputs done!";
+     addMasterChannel(0,"Master",true);
 }
 
 void MainWindow::initializeLoginService(){
