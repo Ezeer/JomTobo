@@ -21,6 +21,8 @@ void MainWindowStandalone::closeEvent(QCloseEvent * e){
     foreach (LocalTrackGroupView* trackGroup, controlSurfaceJTB) {
         trackGroup->closePluginsWindows();
     }
+    //do the same for master track now
+    //Mastertrack->closePluginsWindows();
 }
 
 void MainWindowStandalone::showEvent(QShowEvent *ent){

@@ -330,10 +330,10 @@ LocalTrackGroupView* MainWindow::addMasterChannel(int channelGroupIndex, QString
     QObject::connect(localChannel, SIGNAL(trackAdded()), this, SLOT(on_localTrackAdded()));
     QObject::connect(localChannel, SIGNAL(trackRemoved()), this, SLOT(on_localTrackRemoved()));
 
-    //controlSurfaceJTB.append( localChannel );
+    //controlSurfaceJTB.append( localChannel ); because actually duplicates on itinial start...
 
     localChannel->setGroupName("Master");
-    ui.verticalLayout_5->addWidget(localChannel);
+    ui.MasterTrackLayout->addWidget(localChannel);
 
     if(createFirstSubchannel){
         LocalTrackView* localTrackView = new LocalTrackView(this->mainController, channelGroupIndex);
@@ -1556,23 +1556,15 @@ bool MainWindow::isTransmiting(int channelID) const{
 
 //++++++++++++
 
-void MainWindow::on_collapseMasterTRK_clicked()
-{
-//on_localControlsCollapseButtonClicked();
-    int min = ui.stackedMasterTRK->sizeHint().width() + 12;
-    int max = min;
-    bool showingPeakMeterOnly = controlSurfaceJTB.first()->isShowingPeakMeterOnly();
-    Qt::ScrollBarPolicy scrollPolicy = Qt::ScrollBarAlwaysOff;
 
-    //limit the local inputs widget in mini mode
-    if(!showingPeakMeterOnly && !fullViewMode){
-        max = 180;
-        if(min > max){
-            min = max;
-            scrollPolicy = Qt::ScrollBarAlwaysOn;
-        }
-    }
-    ui.stackedMasterTRK->setMaximumWidth(max);
-    ui.stackedMasterTRK->setMinimumWidth(min);
-    ui.scrollArea->setHorizontalScrollBarPolicy(scrollPolicy);
+
+void MainWindow::on_PreviousMasterPage_clicked()
+{
+ ui.stackedMasterTRK->setCurrentIndex(ui.stackedMasterTRK->currentIndex()-1);
+}
+
+void MainWindow::on_NextMasterPage_clicked()
+{
+    ui.stackedMasterTRK->setCurrentIndex(ui.stackedMasterTRK->currentIndex()+1);
+
 }

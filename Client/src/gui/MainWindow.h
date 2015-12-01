@@ -92,6 +92,7 @@ protected:
     void centerDialog(QWidget* dialog);
 
     QList<LocalTrackGroupView*> controlSurfaceJTB;
+    //LocalTrackGroupView* Mastertrack; // should be in controlSurfaceJTB but need works to avoid duplicates...
 
     virtual NinjamRoomWindow* createNinjamWindow(Login::RoomInfo, Controller::MainController*) = 0;
 
@@ -166,7 +167,11 @@ private slots:
     void on_pluginFinderDialogCanceled();
 
 
-    void on_collapseMasterTRK_clicked();
+
+
+    void on_PreviousMasterPage_clicked();
+
+    void on_NextMasterPage_clicked();
 
 private:
 
