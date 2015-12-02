@@ -77,8 +77,8 @@ FxPanel::FxPanel(QWidget *parent,LocalTrackView *view, Controller::MainControlle
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 void FxPanel::removePlugin(){
-    QList<FxPanelItem*> items = findChildren<FxPanelItem*>();
-    for(FxPanelItem* item : items){
+    QList<FxPanelItem*> items = getItems();//findChildren<FxPanelItem*>();
+    foreach(FxPanelItem* item , items){
         if(item->containPlugin()){
             item->unsetPlugin();
 
@@ -94,7 +94,7 @@ void FxPanel::addPlugin(Audio::Plugin * plugin)
     foreach(FxPanelItem* item , items)
     {//find the first free slot to put the new plugin
         if(!item->containPlugin())
-        { qDebug()<<"ntm !!!";
+        {
             item->setPlugin(plugin);
 
             return;
