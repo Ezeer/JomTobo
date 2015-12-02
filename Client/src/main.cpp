@@ -39,7 +39,7 @@ int main(int argc, char* args[] ){
     splash->showMessage("Loaded modules");
 
     //..JOMTOBO CSS
-    mainController.configureStyleSheet("jamtaba.css");
+    mainController.configureStyleSheet("jomtoboDark.css");
     mainController.start();
     if(mainController.isUsingNullAudioDriver()){
         QMessageBox::about(nullptr, "Fatal error!", "Jamtaba can't detect any audio device in your machine!");

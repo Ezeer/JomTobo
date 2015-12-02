@@ -32,8 +32,8 @@ FxPanelItem::FxPanelItem(QWidget* parent,LocalTrackView* view, Controller::MainC
      connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(on_contextMenu(QPoint)));
 
      QHBoxLayout* layout = new QHBoxLayout(this);
-     layout->setContentsMargins(0, 0, 0, 0);
-     layout->setSpacing(0);
+     layout->setContentsMargins(2, 2, 2, 2);
+     layout->setSpacing(1);
 
      QCursor c;
      c.setShape(Qt::CursorShape::PointingHandCursor);

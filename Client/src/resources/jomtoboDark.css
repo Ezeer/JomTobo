@@ -141,7 +141,7 @@ FxPanelItem{
 }
 
 BaseTrackView[unlighted="false"] FxPanelItem{
-    border: 1px outset rgb(100, 100, 100);
+    border: 1px outset rgb(20, 255,0);
 }
 
 FxPanelItem[containPlugin="false"]{
@@ -153,8 +153,8 @@ FxPanelItem[containPlugin="true"]{
 
 FxPanelItem > QLabel{
     qproperty-alignment: AlignLeft;
-    font-size: 12px;
-    color: rgb(65, 100, 61);
+    font-size: 8px;
+    color: rgba(0, 255,0,250);
     margin: 0px;
 }
 /* Não funcionou
@@ -164,7 +164,7 @@ FxPanelItem[bypassed] > QLabel{
 */
 
 FxPanelItem:hover{
-    background-color: qlineargradient(x1:0, y1:0.4, x2:0, y2:1, stop:0 rgba(100, 100, 100, 50), stop:1 rgba(100, 100, 100, 70));
+    background-color: qlineargradient(x1:0, y1:0.4, x2:0, y2:1, stop:0 rgba(100, 200, 100, 50), stop:1 rgba(100, 100, 100, 70));
 }
 
 FxPanelItem > QPushButton{
@@ -781,7 +781,7 @@ QPushButton#xmitButton[preparing="true"]{
 /*  Track view +++++++++++++++++++++++++++++++++++++++++++++++ */
 BaseTrackView{
     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-        stop:0 rgb,(110, 110, 110),
+        stop:0 rgb,(110, 110, 110),/*this error made the dark ah ah ah*/
         stop:0.01 rgb(240, 240, 240),
         stop:1 rgb(200, 200, 200)
     );

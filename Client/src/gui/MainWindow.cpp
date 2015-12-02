@@ -763,7 +763,7 @@ void MainWindow::initializeWindowState(){
     }
     else{
         //FULLSCREENMODE ?
-        if(mainController->getSettings().windowsWasFullViewMode())
+        if(mainController->getSettings().windowsWasFullViewMode()&& mainController->getSettings().windowsWasFullScreenViewMode())
             this->setWindowState(Qt::WindowFullScreen);
         QPointF location = mainController->getSettings().getLastWindowLocation();
         QDesktopWidget* desktop = QApplication::desktop();
