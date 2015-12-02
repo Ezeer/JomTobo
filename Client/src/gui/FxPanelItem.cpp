@@ -85,9 +85,6 @@ FxPanelItem::FxPanelItem(LocalTrackView *parent, Controller::MainController *mai
     //setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
 }
 
-//void FxPanelItem::setFxMenu(QMenu* fxMenu){
-//    this->fxMenu = fxMenu;
-//}
 
 bool FxPanelItem::pluginIsBypassed(){
     //qWarning() << "consultando";
@@ -117,6 +114,7 @@ void FxPanelItem::updateStyleSheet(){
 void FxPanelItem::setPlugin(Audio::Plugin* plugin){
     this->plugin = plugin;
     this->label->setText( plugin->getName());
+    //this->label->resize(10,20);
     this->bypassButton->setVisible(true);
     this->bypassButton->setChecked(!plugin->isBypassed());
     updateStyleSheet();

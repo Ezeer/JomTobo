@@ -561,7 +561,7 @@ FxPanel *LocalTrackView::createFxPanel(){
     QWidget* wFxPanel = new QWidget(this);
     wFxPanel->setObjectName("FxPanel");
     wFxPanel->setLayout(new QVBoxLayout(wFxPanel));
-    wFxPanel->layout()->setContentsMargins(2,2,-2,-2);
+    wFxPanel->layout()->setContentsMargins(2,2,2,2);
     wFxPanel->layout()->setSpacing(5);
     this->ui->mainLayout->insertWidget(0,wFxPanel);
     //wFxPanel->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum));
