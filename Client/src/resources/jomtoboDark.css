@@ -781,7 +781,7 @@ QPushButton#xmitButton[preparing="true"]{
 /*  Track view +++++++++++++++++++++++++++++++++++++++++++++++ */
 BaseTrackView{
     background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
-        stop:0 rgb(0, 0, 0),
+        stop:0 rgb,(110, 110, 110),
         stop:0.01 rgb(240, 240, 240),
         stop:1 rgb(200, 200, 200)
     );

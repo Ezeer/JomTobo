@@ -3,6 +3,7 @@
         <file>jamtaba.css</file>
         <file>jamtaba_orange.css</file>
         <file>jomtobo.css</file>
+        <file>jomtoboDark.css</file>
     </qresource>
     <qresource prefix="/images">
         <file>gradient.bmp</file>
