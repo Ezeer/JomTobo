@@ -44,10 +44,10 @@ void LocalTrackView::init(int channelIndex, float
         qCritical() << "LocalTrackView::init() mainController is null!";
         return;
     }
-
-
+    fxSpacer = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed);
+    ui->mainLayout->addSpacerItem(fxSpacer);
     fxPanel = createFxPanel();
-    //ui->mainLayout->addSpacing(2);//add separator before effects panel
+
     ui->mainLayout->addWidget( fxPanel );
 
     //create input panel in the bottom
@@ -561,8 +561,9 @@ FxPanel *LocalTrackView::createFxPanel(){
     QWidget* wFxPanel = new QWidget(this);
     wFxPanel->setObjectName("FxPanel");
     wFxPanel->setLayout(new QVBoxLayout(wFxPanel));
-    wFxPanel->layout()->setContentsMargins(0, 0, 0, 0);
-    wFxPanel->layout()->setSpacing(2);
+    wFxPanel->layout()->setContentsMargins(2,2,-2,-2);
+    wFxPanel->layout()->setSpacing(5);
+    this->ui->mainLayout->insertWidget(0,wFxPanel);
     //wFxPanel->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum));
     FxPanel* panel = new FxPanel(wFxPanel,this, mainController);
 
