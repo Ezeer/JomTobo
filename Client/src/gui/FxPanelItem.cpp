@@ -33,7 +33,10 @@ FxPanelItem::FxPanelItem(LocalTrackView *parent, Controller::MainController *mai
     QHBoxLayout* layout = new QHBoxLayout(this);
     layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(2);
+    QCursor c;
+    c.setShape(Qt::CursorShape::PointingHandCursor);
 
+label->setCursor(c);
     layout->addWidget(this->label, 1);
     layout->addWidget(this->bypassButton);
 

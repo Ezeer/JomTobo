@@ -555,7 +555,7 @@ void LocalTrackView::addPlugin(Audio::Plugin* plugin, bool bypassed){
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 FxPanel *LocalTrackView::createFxPanel(){
     FxPanel* panel = new FxPanel(this, mainController);
-
+    //ui->vstLayout->addWidget(panel);
     //panel->connect(panel, SIGNAL(editingPlugin(Audio::Plugin*)), this, SIGNAL(editingPlugin(Audio::Plugin*)));
     //panel->connect(panel, SIGNAL(pluginRemoved(Audio::Plugin*)), this, SIGNAL(removingPlugin(Audio::Plugin*)));
     return panel;

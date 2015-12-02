@@ -44,6 +44,7 @@
 
 #include "log/logging.h"
 #include <QShortcut>
+#include "NinjamPanel.h" //FOR JonJamConcept
 
 
 using namespace Audio;
@@ -355,7 +356,8 @@ LocalTrackGroupView* MainWindow::addMasterChannel(int channelGroupIndex, QString
             trackGroup->setToNarrow();
         }
     }
-
+//now metronome
+    //NinjamPanel* metro= new NinjamPanel(this);
     return localChannel;
 
 }

@@ -15,7 +15,7 @@ FxPanel::FxPanel(LocalTrackView *parent, Controller::MainController *mainControl
     localTrackView(parent)
 {
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
-    mainLayout->setContentsMargins(QMargins(0, 0, 0, 0));
+    mainLayout->setContentsMargins(QMargins(0,0,0,0));
     mainLayout->setSpacing(2);
 
     //QWidget* contentPane = new QWidget(this);
