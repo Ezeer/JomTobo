@@ -47,7 +47,7 @@ void LocalTrackView::init(int channelIndex, float
 
 
     fxPanel = createFxPanel();
-    ui->mainLayout->addSpacing(20);//add separator before effects panel
+    //ui->mainLayout->addSpacing(2);//add separator before effects panel
     ui->mainLayout->addWidget( fxPanel );
 
     //create input panel in the bottom
@@ -545,19 +545,27 @@ void LocalTrackView::on_MidiInputDeviceSelected(QAction *action){
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 void LocalTrackView::addPlugin(Audio::Plugin* plugin, bool bypassed){
     if(fxPanel){
+
         //plugin->setEditor(new Audio::PluginWindow(plugin));
         plugin->setBypass(bypassed);
-        this->fxPanel->addPlugin(plugin);
-        this->refreshInputSelectionName();//refresh input type combo box, if the added plugins is a virtual instrument Jamtaba will try auto change the input type to midi
+        fxPanel->addPlugin(plugin);
+        refreshInputSelectionName();//refresh input type combo box, if the added plugins is a virtual instrument Jamtaba will try auto change the input type to midi
         update();
     }
 }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 FxPanel *LocalTrackView::createFxPanel(){
-    FxPanel* panel = new FxPanel(this, mainController);
     //ui->vstLayout->addWidget(panel);
     //panel->connect(panel, SIGNAL(editingPlugin(Audio::Plugin*)), this, SIGNAL(editingPlugin(Audio::Plugin*)));
     //panel->connect(panel, SIGNAL(pluginRemoved(Audio::Plugin*)), this, SIGNAL(removingPlugin(Audio::Plugin*)));
+    QWidget* wFxPanel = new QWidget(this);
+    wFxPanel->setObjectName("FxPanel");
+    wFxPanel->setLayout(new QVBoxLayout(wFxPanel));
+    wFxPanel->layout()->setContentsMargins(0, 0, 0, 0);
+    wFxPanel->layout()->setSpacing(2);
+    //wFxPanel->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum));
+    FxPanel* panel = new FxPanel(wFxPanel,this, mainController);
+
     return panel;
 }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

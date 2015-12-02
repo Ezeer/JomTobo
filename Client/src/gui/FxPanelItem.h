@@ -23,6 +23,8 @@ class FxPanelItem : public QWidget
 
 public:
     FxPanelItem(LocalTrackView* parent, Controller::MainController* mainController);
+    FxPanelItem(QWidget* parent,LocalTrackView* view, Controller::MainController* mainController);
+
     ~FxPanelItem();
     void setPlugin(Audio::Plugin* plugin);
     void unsetPlugin();

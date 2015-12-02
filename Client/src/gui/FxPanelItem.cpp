@@ -19,6 +19,39 @@
 
 const QString FxPanelItem::NEW_EFFECT_STRING = "new effect...";
 
+FxPanelItem::FxPanelItem(QWidget* parent,LocalTrackView* view, Controller::MainController* mainController)
+     :QWidget(parent),
+       plugin(nullptr),
+       bypassButton(new QPushButton(this)),
+       label(new QLabel()),
+       mainController(mainController),
+       localTrackView(view)
+
+ {
+     setContextMenuPolicy(Qt::CustomContextMenu);
+     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(on_contextMenu(QPoint)));
+
+     QHBoxLayout* layout = new QHBoxLayout(this);
+     layout->setContentsMargins(0, 0, 0, 0);
+     layout->setSpacing(0);
+
+     QCursor c;
+     c.setShape(Qt::CursorShape::PointingHandCursor);
+     label->setCursor(c);
+     //layout->insertWidget(0,this->label, 1);
+     layout->addWidget(this->label, 1);
+     layout->addWidget(this->bypassButton);
+
+     //label->setAlignment();
+
+     this->bypassButton->setVisible(false);
+     this->bypassButton->setCheckable(true);
+     this->bypassButton->setChecked(true);
+
+     QObject::connect( this->bypassButton, SIGNAL(clicked()), this, SLOT(on_buttonClicked()) );
+
+     //setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
+ }
 FxPanelItem::FxPanelItem(LocalTrackView *parent, Controller::MainController *mainController)
     :QWidget(parent),
       plugin(nullptr),
@@ -33,11 +66,12 @@ FxPanelItem::FxPanelItem(LocalTrackView *parent, Controller::MainController *mai
     QHBoxLayout* layout = new QHBoxLayout(this);
     layout->setContentsMargins(1, 1, 1, 1);
     layout->setSpacing(2);
+
     QCursor c;
     c.setShape(Qt::CursorShape::PointingHandCursor);
-
-label->setCursor(c);
-    layout->addWidget(this->label, 1);
+    label->setCursor(c);
+    layout->insertWidget(0,this->label, 1);
+    //layout->addWidget(this->label, 1);
     layout->addWidget(this->bypassButton);
 
     //label->setAlignment();
@@ -138,6 +172,7 @@ void FxPanelItem::on_contextMenu(QPoint p){
         if(!plugins.isEmpty()){
             for(const Audio::PluginDescriptor& pluginDescriptor  : plugins){
                 QAction* action = menu.addAction(pluginDescriptor.getName());
+
                 action->setData(pluginDescriptor.toString());
             }
 
@@ -161,9 +196,11 @@ void FxPanelItem::on_contextMenu(QPoint p){
 
 void FxPanelItem::on_fxMenuActionTriggered(QAction* action){
     //add a new plugin
+
     Audio::PluginDescriptor descriptor = Audio::PluginDescriptor::fromString( action->data().toString());
     Audio::Plugin* plugin = mainController->addPlugin(this->localTrackView->getInputIndex(), descriptor);
     if(plugin){
+
         this->localTrackView->addPlugin(plugin);
         showPluginGui(plugin);
     }

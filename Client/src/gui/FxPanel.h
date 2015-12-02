@@ -20,6 +20,8 @@ class FxPanel : public QWidget
 
 public:
     FxPanel( LocalTrackView *parent, Controller::MainController* mainController);
+    FxPanel( QWidget *parent,LocalTrackView *view, Controller::MainController* mainController);
+
     ~FxPanel();
     void addPlugin(Audio::Plugin* plugin);
     void removePlugin();
