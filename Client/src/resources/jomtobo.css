@@ -154,7 +154,7 @@ FxPanelItem[containPlugin="true"]{
 FxPanelItem > QLabel{
     qproperty-alignment: AlignLeft;
     font-size: 10px;
-    color: #D3D3D3;
+    color: rgb(100, 100, 100);
     margin: 0px;
 }
 /* Não funcionou
