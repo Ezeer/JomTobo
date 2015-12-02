@@ -152,7 +152,8 @@ FORMS += \
     ../src/gui/UserNameDialog.ui \
     $$PWD/src/gui/MainWindow.ui \
     $$PWD/src/gui/PreferencesDialog.ui \
-    $$PWD/src/gui/chords/ChordsPanel.ui
+    $$PWD/src/gui/chords/ChordsPanel.ui \
+    $$PWD/src/gui/infopage.ui
 
 
 INCLUDEPATH += ../src/ \

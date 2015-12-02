@@ -45,6 +45,7 @@
 #include "log/logging.h"
 #include <QShortcut>
 #include "NinjamPanel.h" //FOR JonJamConcept
+#include "ui_infoPage.h" //info page in master
 
 
 using namespace Audio;
@@ -1568,5 +1569,10 @@ void MainWindow::on_PreviousMasterPage_clicked()
 void MainWindow::on_NextMasterPage_clicked()
 {
     ui.stackedMasterTRK->setCurrentIndex(ui.stackedMasterTRK->currentIndex()+1);
+   Ui::Form  pageInfo ;
+   QWidget *widget = new QWidget;
+   pageInfo.setupUi(widget);
+   ui.stackedMasterTRK->addWidget(widget);
+
 
 }
