@@ -153,8 +153,8 @@ FxPanelItem[containPlugin="true"]{
 
 FxPanelItem > QLabel{
     qproperty-alignment: AlignLeft;
-    font-size: 10px;
-    color: rgb(100, 100, 100);
+    font-size: 12px;
+    color: rgb(65, 100, 61);
     margin: 0px;
 }
 /* Não funcionou
@@ -164,7 +164,7 @@ FxPanelItem[bypassed] > QLabel{
 */
 
 FxPanelItem:hover{
-    background-color: qlineargradient(x1:0, y1:0.4, x2:0, y2:1, stop:0 rgba(0, 0, 0, 50), stop:1 rgba(0, 0, 0, 70));
+    background-color: qlineargradient(x1:0, y1:0.4, x2:0, y2:1, stop:0 rgba(100, 100, 100, 50), stop:1 rgba(100, 100, 100, 70));
 }
 
 FxPanelItem > QPushButton{
@@ -173,13 +173,13 @@ FxPanelItem > QPushButton{
      margin: 0px;
      padding: 0px;
      border-radius: 2px;
-     border: 1px solid rgba(0, 0, 0, 80);
+     border: 2px solid rgba(100, 100, 100, 20);
      background-color: qlineargradient(x1:0, y1:0, x2:0, y2:0.95, stop:0 rgba(0, 0, 0, 120), stop:1 rgb(0, 0, 0, 50));
 }
 
 FxPanelItem > QPushButton:hover{
-    border: 1px solid rgba(0, 0, 0);
-    /*background-color: qlineargradient(x1:0, y1:0, x2:0, y2:0.95, stop:0 rgba(0, 0, 0, 150), stop:1 rgb(0, 0, 0, 80));*/
+    border: 1px solid rgba(100, 100, 100, 80);
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:0.95, stop:0 rgba(0, 0, 0, 150), stop:1 rgb(0, 0, 0, 80));
 }
 
 FxPanelItem > QPushButton:checked{
