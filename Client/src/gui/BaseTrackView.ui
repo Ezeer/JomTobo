@@ -196,11 +196,14 @@
               <property name="tracking">
                <bool>false</bool>
               </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
               <property name="wrapping">
                <bool>false</bool>
               </property>
               <property name="notchesVisible">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
              </widget>
             </item>
