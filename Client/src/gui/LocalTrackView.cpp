@@ -49,14 +49,14 @@ void LocalTrackView::init(int channelIndex, float
     ui->mainLayout->addSpacerItem(fxSpacer);
     fxPanel = createFxPanel();
 
-    ui->mainLayout->addWidget( fxPanel );
+    //ui->mainLayout->addWidget( fxPanel );
 
     //create input panel in the bottom
     this->inputPanel = createInputPanel();
     fxSpacer = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed);
     ui->mainLayout->addSpacerItem(fxSpacer);
 
-    ui->mainLayout->addWidget(inputPanel);
+    ui->mainLayout->insertWidget(0,inputPanel);
 
     this->inputTypeIconLabel = createInputTypeIconLabel(this);
     ui->mainLayout->addWidget(inputTypeIconLabel);
