@@ -75,10 +75,10 @@ QInputDialog QPushButton{
 
 
 FxPanel{
-    border: none;
-    background-color: none; /* rgba(0, 0, 0, 20);*/
+    border:rgba(10, 0, 0, 200);
+    background-color: rgba(0, 0, 0, 20);
     max-height: 80px;
-    border-radius: 2px;
+    border-radius: 6px;
 }
 BaseTrackView[unlighted="false"] FxPanel{
    /*border:  1px inset rgb(100, 100, 100);*/
@@ -131,7 +131,7 @@ BaseTrackView #boostPanel QPushButton#buttonBoostPlus12{
 
 
 FxPanelItem{
-    background-color: qlineargradient(x1:0, y1:0.6, x2:0, y2:1, stop:0 rgba(0, 0, 0, 30), stop:1 rgba(0, 0, 0, 50));
+    background-color: qlineargradient(x1:0, y1:0.6, x2:0, y2:1, stop:0 rgba(0, 100, 0, 30), stop:1 rgba(0, 0, 0, 50));
     background-position: center right;
     background-repeat: none;
     max-height: 14px;

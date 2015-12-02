@@ -46,6 +46,7 @@
         <file>preset-save.png</file>
         <file>discard.png</file>
         <file>asio.png</file>
+        <file>jomjamconcept.png</file>
     </qresource>
     <qresource prefix="/flags">
         <file>flags/ad.png</file>

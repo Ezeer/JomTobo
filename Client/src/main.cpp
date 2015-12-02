@@ -7,8 +7,10 @@
 #include "log/logging.h"
 #include "Libs/SingleApplication/singleapplication.h"
 #include "configurator.h"
+#include <QSplashScreen>
 
 int main(int argc, char* args[] ){
+
 
     //QApplication::setApplicationName("Jamtaba 2");
     QApplication::setApplicationName("Jomtobo");
@@ -28,8 +30,14 @@ int main(int argc, char* args[] ){
 #else
     QApplication* application = new QApplication(argc, args);
 #endif
-
+    QPixmap pixmap(":/jomjamconcept.png");
+    QSplashScreen *splash = new QSplashScreen(pixmap);
+    splash->show();
     Controller::StandaloneMainController mainController(settings, (QApplication*)application);
+
+    // Loading some items
+    splash->showMessage("Loaded modules");
+
     //..JOMTOBO CSS
     mainController.configureStyleSheet("jomtobo.css");
     mainController.start();
@@ -40,6 +48,7 @@ int main(int argc, char* args[] ){
     mainController.setMainWindow(&mainWindow);
 
     mainWindow.show();
+    splash->finish(&mainWindow);
 
 #ifdef Q_OS_WIN
     //The SingleApplication class implements a showUp() signal. You can bind to that signal to raise your application's
