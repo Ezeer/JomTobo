@@ -27,7 +27,9 @@
 
 #include <QScopedPointer>
 
+
 class MainWindow;
+class MidiControl;
 
 namespace Audio {
     class SamplesBuffer;
@@ -56,6 +58,7 @@ namespace Controller {
 class AudioListener;
 class NinjamController;
 
+
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class MainController : public QObject
 {
@@ -63,6 +66,7 @@ class MainController : public QObject
 
     friend class Controller::AudioListener;
     friend class Controller::NinjamController;
+
 
 
 protected:
@@ -248,10 +252,15 @@ protected:
 
 
     virtual void setCSS(QString css) = 0;
+    //MIDICONTROL
+    void createMidiControler();
+    void deleteMidiControler();
 
 private:
-    void setAllTracksActivation(bool activated);
-    void doAudioProcess(const Audio::SamplesBuffer& in, Audio::SamplesBuffer& out, int sampleRate);
+     MidiControl *midiController;
+     bool hasMidiControl;
+     void setAllTracksActivation(bool activated);
+     void doAudioProcess(const Audio::SamplesBuffer& in, Audio::SamplesBuffer& out, int sampleRate);
 
     bool inputIndexIsValid(int inputIndex);
 

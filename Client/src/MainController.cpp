@@ -30,8 +30,8 @@
 
 #include "log/logging.h"
 #include "configurator.h"
+#include "../src/midi/midicontrol.h"
 
-//QString Controller::MainController::LOG_CONFIG_FILE = "logging.ini";
 
 //extern Configurator *JTBConfig;
 using namespace Persistence;
@@ -295,7 +295,7 @@ MainController::MainController(Settings settings)
       mainWindow(nullptr),
       jamRecorder(new Recorder::ReaperProjectGenerator())
 {
-
+ createMidiControler();
 }
 
 //++++++++++++++++++++
@@ -760,6 +760,13 @@ MainController::~MainController(){
     stop();
     qCDebug(jtCore()) << "main controller stopped!";
 
+    //remove midiController
+    if(hasMidiControl)
+    {
+        deleteMidiControler();
+        qCDebug(jtCore) << "MidiControler shutdown !";
+    }
+
     qCDebug(jtCore()) << "clearing tracksNodes...";
     tracksNodes.clear();
     foreach (Audio::LocalInputAudioNode* input, inputTracks) {
@@ -1127,4 +1134,15 @@ void MainController::stopNinjamController(){
 
 }
 
+void MainController::createMidiControler()
+{
+    midiController=new MidiControl(this);
+    hasMidiControl=true;
+    qDebug()<<" MidiController is online !";
+}
 
+void MainController::deleteMidiControler()
+{
+    delete midiController;
+    hasMidiControl=false;
+}
