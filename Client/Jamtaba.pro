@@ -8,6 +8,6 @@ SUBDIRS += Standalone
 
 #SUBDIRS += ThemeEditor
 
-CONFIG += ordered
+#CONFIG += ordered
 
 

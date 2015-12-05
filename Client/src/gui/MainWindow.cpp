@@ -714,6 +714,7 @@ void MainWindow::initializeLoginService(){
 void MainWindow::initializeWindowState(){
 
     setFullViewStatus(mainController->getSettings().windowsWasFullViewMode());
+    bool pluginmode=mainController->isRunningAsVstPlugin();
 
     if(mainController->getSettings().windowWasMaximized() && fullViewMode){
         qCDebug(jtGUI)<< "setting window state to maximized";
@@ -721,9 +722,10 @@ void MainWindow::initializeWindowState(){
     }
     else{
         //FULLSCREENMODE ?
-        if(mainController->getSettings().windowsWasFullViewMode())
+
+        if(!pluginmode && mainController->getSettings().windowsWasFullViewMode()&& mainController->getSettings().windowsWasFullScreenViewMode() )
             this->setWindowState(Qt::WindowFullScreen);
-        QPointF location = mainController->getSettings().getLastWindowLocation();
+        /*QPointF location = mainController->getSettings().getLastWindowLocation();
         QDesktopWidget* desktop = QApplication::desktop();
         int desktopWidth = desktop->width();
         int desktopHeight = desktop->height();
@@ -731,7 +733,7 @@ void MainWindow::initializeWindowState(){
         int y = desktopHeight * location.y();
         this->move(x, y);
         qCDebug(jtGUI)<< "Restoring window to position:" << x << ", " << y;
-        qCDebug(jtGUI)<< "Window size:" << width() << ", " << height();
+        qCDebug(jtGUI)<< "Window size:" << width() << ", " << height();*/
     }
 
 }
