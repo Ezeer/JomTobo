@@ -10,6 +10,7 @@
 
 
 using namespace Controller;
+using namespace Midi;
 
 class MidiControl
 {
@@ -17,8 +18,10 @@ public:
     MidiControl();
     MidiControl(MainController* mCtrl);
     ~MidiControl();
+    MidiBuffer filterMidiMsg(MidiBuffer Buffer);//return the number of msgs
 private:
     MainController* mainControl;
+
 };
 
 #endif // MIDICONTROL_H

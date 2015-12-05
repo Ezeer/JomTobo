@@ -612,21 +612,10 @@ void MainController::removeTrack(long trackID){
 /// Instead of having bribes of code here , we'll have a bunch in other
 /// source+header
 void MainController::doAudioProcess(const Audio::SamplesBuffer &in, Audio::SamplesBuffer &out, int sampleRate){
-    MidiBuffer midiBuffer ( midiDriver ? midiDriver->getBuffer() : MidiBuffer(0));
-    int messages = midiBuffer.getMessagesCount();
-    for(int m=0; m < messages; m++){
-        Midi::MidiMessage msg = midiBuffer.getMessage(m);
-        //intercept CC
 
-        if(msg.isControl()){
-            int inputTrackIndex = 0;//just for test for while, we need get this index from the mapping pair
-            char cc = msg.getData1();
-            char ccValue = msg.getData2();
-            qCDebug(jtMidi) << "Control Change received: " << QString::number(cc) << " -> " << QString::number(ccValue);
-            getInputTrack(inputTrackIndex)->setGain(ccValue/127.0);
-        }
-    }
-    audioMixer.process(in, out, sampleRate, midiBuffer);
+    MidiBuffer bufferMidi=midiController->filterMidiMsg(midiDriver ? midiDriver->getBuffer() : MidiBuffer(0));
+    //bool hasMidiControl;
+    audioMixer.process(in, out, sampleRate,bufferMidi);
 }
 
 
@@ -1138,7 +1127,7 @@ void MainController::createMidiControler()
 {
     midiController=new MidiControl(this);
     hasMidiControl=true;
-    qDebug()<<" MidiController is online !";
+    qInfo()<<" MidiController is online !";
 }
 
 void MainController::deleteMidiControler()
