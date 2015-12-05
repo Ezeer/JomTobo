@@ -76,6 +76,7 @@ HEADERS += \
     $$PWD/src/gui/chords/ChordsPanel.h \
     $$PWD/src/gui/chords/ChordProgression.h \
     $$PWD/src/configurator.h \
+    $$PWD/src/midi/midicontrol.h
 
 SOURCES += \
     ../src/audio/core/AudioDriver.cpp \
@@ -131,6 +132,7 @@ SOURCES += \
     $$PWD/src/gui/chords/ChordsPanel.cpp \
     $$PWD/src/gui/chords/ChordProgression.cpp \
     $$PWD/src/configurator.cpp \
+    $$PWD/src/midi/midicontrol.cpp
 
 
 #multiplatform implementations

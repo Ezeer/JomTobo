@@ -393,18 +393,24 @@ void LocalInputAudioNode::processReplacing(const SamplesBuffer &in, SamplesBuffe
             int inChannelOffset = audioInputRange.getFirstChannel() - globalFirstInputIndex;
             internalInputBuffer.set(in, inChannelOffset, audioInputRange.getChannels());
         }
-        else if(isMidi()){//just in case
+        else if(isMidi())
+        {//just in case
             int total = midiBuffer.getMessagesCount();
-            if(total > 0){
-                for (int m = 0; m < total; ++m) {
+            if(total > 0)
+            {
+                for (int m = 0; m < total; ++m)
+                {
                     Midi::MidiMessage message = midiBuffer.getMessage(m);
-                    if( message.getDeviceIndex() == midiDeviceIndex && (isReceivingAllMidiChannels() || message.getChannel() == midiChannelIndex)){
+                    if( message.getDeviceIndex() == midiDeviceIndex && (isReceivingAllMidiChannels() || message.getChannel() == midiChannelIndex))
+                    {
                         filteredMidiBuffer.addMessage(message);
 
                         //save the midi activity peak value for notes or controls
-                        if(message.isNote() || message.isControl()){
+                        if(message.isNote() || message.isControl())
+                        {
                             quint8 activityValue = message.getData2();
-                            if(activityValue > lastMidiActivity){
+                            if(activityValue > lastMidiActivity)
+                            {
                                 lastMidiActivity = activityValue;
                             }
                         }

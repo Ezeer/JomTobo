@@ -606,12 +606,18 @@ void MainController::removeTrack(long trackID){
 }
 
 
-
+///@Jon Maincontroller is a class generic , my plan is to create
+/// a new class , say MidiController , that will make the job for
+/// Maincontroller
+/// Instead of having bribes of code here , we'll have a bunch in other
+/// source+header
 void MainController::doAudioProcess(const Audio::SamplesBuffer &in, Audio::SamplesBuffer &out, int sampleRate){
     MidiBuffer midiBuffer ( midiDriver ? midiDriver->getBuffer() : MidiBuffer(0));
     int messages = midiBuffer.getMessagesCount();
     for(int m=0; m < messages; m++){
         Midi::MidiMessage msg = midiBuffer.getMessage(m);
+        //intercept CC
+
         if(msg.isControl()){
             int inputTrackIndex = 0;//just for test for while, we need get this index from the mapping pair
             char cc = msg.getData1();
