@@ -189,7 +189,7 @@ void MainController::on_disconnectedFromNinjamServer(const Server &server){
 
 
 void MainController::on_connectedInNinjamServer(Ninjam::Server server){
-    qCDebug(jtCore) << "connected in ninjam server";
+//    qCDebug(jtCore) << "connected in ninjam server";
     stopNinjamController();
     Controller::NinjamController* newNinjamController = createNinjamController(this);// new Controller::NinjamController(this);
     this->ninjamController.reset( newNinjamController );
@@ -207,7 +207,7 @@ void MainController::on_connectedInNinjamServer(Ninjam::Server server){
     else{
         qCCritical(jtCore) << "mainWindow is null!";
     }
-    qCDebug(jtCore) << "starting ninjamController...";
+//    qCDebug(jtCore) << "starting ninjamController...";
 
 
     newNinjamController->start(server, getXmitChannelsFlags());
@@ -232,7 +232,7 @@ void MainController::on_ninjamStartProcessing(int intervalPosition){
 }
 
 void MainController::on_newNinjamInterval(){
-    qCDebug(jtCore) << "MainController: on_newNinjamInterval";
+//    qCDebug(jtCore) << "MainController: on_newNinjamInterval";
     if(settings.isSaveMultiTrackActivated()){
         jamRecorder.newInterval();
     }
@@ -612,13 +612,16 @@ void MainController::doAudioProcess(const Audio::SamplesBuffer &in, Audio::Sampl
     int messages = midiBuffer.getMessagesCount();
     for(int m=0; m < messages; m++){
         Midi::MidiMessage msg = midiBuffer.getMessage(m);
-        if(msg.isControl()){
-            int inputTrackIndex = 0;//just for test for while, we need get this index from the mapping pair
+      if (msg.getChannel() < inputTracks.size()) {
+        if(msg.getData1() == 39){
             char cc = msg.getData1();
             char ccValue = msg.getData2();
-            qCDebug(jtMidi) << "Control Change received: " << QString::number(cc) << " -> " << QString::number(ccValue);
-            getInputTrack(inputTrackIndex)->setGain(ccValue/127.0);
+            char ccMidiCh = msg.getChannel() + 1;
+            int inputTrackIndex = ccMidiCh - 1;//just for test for while, we need get this index from the mapping pair
+  //          qCDebug(jtMidi) << "Numbers of Channels: " << inputTracks.size() << "Control Change received: " << QString::number(cc) << "Value -> " << QString::number(ccValue)<< "Midi Channel -> " << QString::number(ccMidiCh);
+            getInputTrack(inputTrackIndex)->setGain(ccValue/105.0);
         }
+      }
     }
     audioMixer.process(in, out, sampleRate, midiBuffer);
 }
@@ -746,15 +749,15 @@ bool MainController::trackIsSoloed(int trackID) const{
 
 
 MainController::~MainController(){
-    qCDebug(jtCore()) << "MainController destrutor!";
+//    qCDebug(jtCore()) << "MainController destrutor!";
     if(mainWindow){
         mainWindow->detachMainController();
     }
 
     stop();
-    qCDebug(jtCore()) << "main controller stopped!";
+//    qCDebug(jtCore()) << "main controller stopped!";
 
-    qCDebug(jtCore()) << "clearing tracksNodes...";
+//    qCDebug(jtCore()) << "clearing tracksNodes...";
     tracksNodes.clear();
     foreach (Audio::LocalInputAudioNode* input, inputTracks) {
         delete input;
@@ -765,9 +768,9 @@ MainController::~MainController(){
         delete group;
     }
     trackGroups.clear();
-    qCDebug(jtCore()) << "clearing tracksNodes done!";
+//    qCDebug(jtCore()) << "clearing tracksNodes done!";
 
-    qCDebug(jtCore) << "MainController destructor finished!";
+//    qCDebug(jtCore) << "MainController destructor finished!";
 
 }
 
@@ -826,7 +829,7 @@ bool MainController::isPlayingRoomStream() const{
 }
 
 void MainController::enterInRoom(Login::RoomInfo room, QStringList channelsNames, QString password){
-    qCDebug(jtCore) << "EnterInRoom slot";
+//    qCDebug(jtCore) << "EnterInRoom slot";
     if(isPlayingRoomStream()){
         stopRoomStream();
     }
@@ -849,7 +852,7 @@ void MainController::sendRemovedChannelMessage(int removedChannelIndex){
 }
 
 void MainController::tryConnectInNinjamServer(Login::RoomInfo ninjamRoom, QStringList channelsNames, QString password){
-    qCDebug(jtCore) << "connecting...";
+//    qCDebug(jtCore) << "connecting...";
     if(userNameWasChoosed()){//just in case :)
         QString serverIp = ninjamRoom.getName();
         int serverPort = ninjamRoom.getPort();
@@ -952,7 +955,7 @@ QString MainController::getUserEnvironmentString() const{
 void MainController::stop()
 {
     if(started){
-        qCDebug(jtCore) << "Stopping MainController...";
+//        qCDebug(jtCore) << "Stopping MainController...";
         {
             //QMutexLocker locker(&mutex);
             if(audioDriver){
@@ -961,18 +964,18 @@ void MainController::stop()
             if(midiDriver){
                 this->midiDriver->release();
             }
-            qCDebug(jtCore) << "audio and midi drivers released";
+//            qCDebug(jtCore) << "audio and midi drivers released";
 
             if(ninjamController){
                 ninjamController->stop(false);//block disconnected signal
-                //qCDebug(controllerMain) << "deleting ninjamController...";
+//                //qCDebug(controllerMain) << "deleting ninjamController...";
                 //delete ninjamController;
                 //ninjamController = nullptr;
             }
             started = false;
         }
 
-        qCDebug(jtCore) << "disconnecting from login server...";
+//        qCDebug(jtCore) << "disconnecting from login server...";
         loginService.disconnectFromServer();
 
     }
