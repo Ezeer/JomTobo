@@ -218,6 +218,7 @@ public:
     void useNullAudioDriver();//use when the audio driver fails
 
     void cancelPluginFinder();
+    MidiControl * getMidiControler();//{return midiController;} const;
 
 protected:
 

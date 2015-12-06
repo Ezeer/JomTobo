@@ -21,9 +21,9 @@ MidiBuffer MidiControl::filterMidiMsg(MidiBuffer Buffer)
     for(int m=0; m < messages; m++)
     {
         Midi::MidiMessage msg = midiBuffer.getMessage(m);
-        filterVolume(&msg);
+        //filterVolume(&msg);
         EControlType ctrl=filterCtrl(&msg);
-        //qCInfo(jtMidi) << "Control Change received: " << ctrl;
+        qCInfo(jtMidi) << "Control Change type received: " << ctrl;
 
 
     }
@@ -55,8 +55,9 @@ void MidiControl::filterVolume(MidiMessage *msg)
     char cc = msg->getData1();
     char ccValue = msg->getData2();
     qCInfo(jtMidi) << "Control Change received: "<<cc<<" value="<<ccValue ;
-
-    mainControl->getInputTrack(inputTrackIndex)->setGain(ccValue/127.0);
+    emit changeVolume(ccValue);
+    emit gainChanged(ccValue/127.0);
+    //mainControl->getInputTrack(inputTrackIndex)->setGain(ccValue/127.0);
 
 }
 

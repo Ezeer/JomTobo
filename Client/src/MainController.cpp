@@ -1130,6 +1130,12 @@ void MainController::createMidiController()
     qInfo()<<" MidiController is online !";
 }
 
+MidiControl * MainController::getMidiControler()
+{
+    return midiController;
+}
+
+
 void MainController::deleteMidiController()
 {
     delete midiController;

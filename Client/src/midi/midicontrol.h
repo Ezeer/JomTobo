@@ -1,8 +1,8 @@
 #ifndef MIDICONTROL_H
 #define MIDICONTROL_H
 
-#include <QObject>
-#include <QWidget>
+//#include <QObject>
+//#include <QWidget>
 #include "MidiDriver.h"
 #include "MainController.h"
 
@@ -13,12 +13,11 @@ using namespace Controller;
 using namespace Midi;
 
 enum EBoostLevel{high,zero,low};
-enum EControlType{none,volume,pan,mute,solo};
+enum EControlType{none,volume=7,pan=10,mute=16,solo=17};
 
 class MidiControl : public QObject
 {
     Q_OBJECT
-
 public:
     MidiControl();
     MidiControl(MainController* mCtrl);
@@ -30,11 +29,16 @@ private:
     void filterVolume(MidiMessage *msg);
 
  signals :
-    void changeVolume(float volume);
-    void changePan(float volume);
+    void changeVolume(int volume);
+    void changePan(int volume);
     void mute(bool on);
     void solo (bool on);
     void boost(EBoostLevel lvl);
+    void gainChanged(float newGain);
+    void panChanged(float newPan);
+    //void boostChanged(float boostInDecibels);//from top to bottom
+    void muteChanged(bool muteStatus);
+    void soloChanged(bool soloStatus);
 
 };
 
