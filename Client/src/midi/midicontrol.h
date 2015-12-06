@@ -16,7 +16,7 @@ enum EBoostLevel{high,zero,low};
 
 class MidiControl : public QObject
 {
-    Q_OBJECT ;
+    Q_OBJECT
 
 public:
     MidiControl();
@@ -25,6 +25,7 @@ public:
     MidiBuffer filterMidiMsg(MidiBuffer Buffer);//return the number of msgs
 private:
     MainController* mainControl;
+
  signals :
     void changeVolume(float volume);
     void changePan(float volume);

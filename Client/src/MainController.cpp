@@ -295,7 +295,7 @@ MainController::MainController(Settings settings)
       mainWindow(nullptr),
       jamRecorder(new Recorder::ReaperProjectGenerator())
 {
- createMidiControler();
+ createMidiController();
 }
 
 //++++++++++++++++++++
@@ -752,7 +752,7 @@ MainController::~MainController(){
     //remove midiController
     if(hasMidiControl)
     {
-        deleteMidiControler();
+        deleteMidiController();
         qCDebug(jtCore) << "MidiControler shutdown !";
     }
 
