@@ -616,7 +616,7 @@ void MainController::doAudioProcess(const Audio::SamplesBuffer &in, Audio::Sampl
             int inputTrackIndex = 0;//just for test for while, we need get this index from the mapping pair
             char cc = msg.getData1();
             char ccValue = msg.getData2();
-            qCDebug(jtMidi) << "Control Change received: " << QString::number(cc) << " -> " << QString::number(ccValue);
+            qDebug() << "Control Change received: " << QString::number(cc) << " -> " << QString::number(ccValue);
             getInputTrack(inputTrackIndex)->setGain(ccValue/127.0);
         }
     }
