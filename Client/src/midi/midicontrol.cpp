@@ -13,6 +13,7 @@ MidiControl::MidiControl(MainController *mCtrl):mainControl(mCtrl)
 
 }
 
+//receive the midi packets and dispatch signals to tracks slots
 MidiBuffer MidiControl::filterMidiMsg(MidiBuffer Buffer)
 {
     MidiBuffer midiBuffer (Buffer);
@@ -21,12 +22,13 @@ MidiBuffer MidiControl::filterMidiMsg(MidiBuffer Buffer)
     {
         Midi::MidiMessage msg = midiBuffer.getMessage(m);
         //intercept CC
-
+        qCInfo(jtMidi)<<"channel is :"<<msg.getChannel();
         if(msg.isControl()){
+             //qCInfo(jtMidi)<<"****channel is :"<<msg.getChannel();
             int inputTrackIndex = 0;//just for test for while, we need get this index from the mapping pair
             char cc = msg.getData1();
             char ccValue = msg.getData2();
-            qCDebug(jtMidi) << "Control Change received: " << QString::number(cc) << " -> " << QString::number(ccValue);
+            qCInfo(jtMidi) << "Control Change received: " << QString::number(cc) << " -> " << QString::number(ccValue);
             mainControl->getInputTrack(inputTrackIndex)->setGain(ccValue/127.0);
         }
     }

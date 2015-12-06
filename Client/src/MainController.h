@@ -253,8 +253,8 @@ protected:
 
     virtual void setCSS(QString css) = 0;
     //MIDICONTROL
-    void createMidiControler();
-    void deleteMidiControler();
+    void createMidiController();
+    void deleteMidiController();
 
 private:
      MidiControl *midiController;

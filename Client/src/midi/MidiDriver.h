@@ -20,6 +20,10 @@ public:
 
     inline int getDeviceIndex() const{return deviceIndex;}
 
+    //In a nutshell, “& 0xff” effectively masks the variable so
+    //it leaves only the value in the last 8 bits, and ignores all
+    //the rest of the bits.
+    //http://blog.oscarliang.net/what-s-the-use-of-and-0xff-in-programming-c-plus-p/
     inline int getStatus() const{ return data & 0xFF;}
     inline int getData1() const{ return (data >> 8) & 0xFF;}
     inline int getData2() const{ return (data >> 16) & 0xFF;}

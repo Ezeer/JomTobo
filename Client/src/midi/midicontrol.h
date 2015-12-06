@@ -12,8 +12,12 @@
 using namespace Controller;
 using namespace Midi;
 
-class MidiControl
+enum EBoostLevel{high,zero,low};
+
+class MidiControl : public QObject
 {
+    Q_OBJECT ;
+
 public:
     MidiControl();
     MidiControl(MainController* mCtrl);
@@ -21,6 +25,12 @@ public:
     MidiBuffer filterMidiMsg(MidiBuffer Buffer);//return the number of msgs
 private:
     MainController* mainControl;
+ signals :
+    void changeVolume(float volume);
+    void changePan(float volume);
+    void mute(bool on);
+    void solo (bool on);
+    void boost(EBoostLevel lvl);
 
 };
 

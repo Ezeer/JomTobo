@@ -1123,14 +1123,14 @@ void MainController::stopNinjamController(){
 
 }
 
-void MainController::createMidiControler()
+void MainController::createMidiController()
 {
     midiController=new MidiControl(this);
     hasMidiControl=true;
     qInfo()<<" MidiController is online !";
 }
 
-void MainController::deleteMidiControler()
+void MainController::deleteMidiController()
 {
     delete midiController;
     hasMidiControl=false;
