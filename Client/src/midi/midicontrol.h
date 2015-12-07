@@ -31,16 +31,16 @@ private:
 
 
  signals :
-    //void changeVolume(int volume);
-    //void changePan(int volume);
-    //void mute(bool on);
-    //void solo (bool on);
-    //void boost(EBoostLevel lvl);
-    void gainChanged(float newGain,int channel);
-    void panChanged(float newPan);
+    void changeVolume(int volume);
+    void changePan(int volume);
+    void mute(bool on);
+    void solo (bool on);
+    void boost(EBoostLevel lvl);
+    //void gainChanged(float newGain,int channel);
+    //void panChanged(float newPan);
     //void boostChanged(float boostInDecibels);//from top to bottom
-    void muteChanged(bool muteStatus);
-    void soloChanged(bool soloStatus);
+    //void muteChanged(bool muteStatus);
+    //void soloChanged(bool soloStatus);
 
 };
 

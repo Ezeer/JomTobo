@@ -45,12 +45,12 @@ BaseTrackView::BaseTrackView(Controller::MainController *mainController, long tr
 
 void BaseTrackView::bindThisViewWithTrackNodeSignals(){
     Audio::AudioNode* trackNode = mainController->getTrackNode(trackID);
-    MidiControl * midiCtrl=mainController->getMidiControler();
+    //MidiControl * midiCtrl=mainController->getMidiControler();
     Q_ASSERT(trackNode);
-    Q_ASSERT(midiCtrl);
+    //Q_ASSERT(midiCtrl);
     QObject::connect(trackNode, SIGNAL(gainChanged(float)), this, SLOT(onAudioNodeGainChanged(float)));
 
-    QObject::connect((QObject*)midiCtrl, SIGNAL(gainChanged(float,int)), this, SLOT(onAudioNodeGainChanged(float,int)));
+    //QObject::connect((QObject*)midiCtrl, SIGNAL(gainChanged(float,int)), this, SLOT(onGainChanged(float,int)));
     QObject::connect(trackNode, SIGNAL(panChanged(float)), this, SLOT(onAudioNodePanChanged(float)));
     QObject::connect(trackNode, SIGNAL(muteChanged(bool)), this, SLOT(onAudioNodeMuteChanged(bool)));
     QObject::connect(trackNode, SIGNAL(soloChanged(bool)), this, SLOT(onAudioNodeSoloChanged(bool)));
@@ -64,7 +64,7 @@ void BaseTrackView::bindThisViewWithTrackNodeSignals(){
 //only change by user mouse interaction, the values can be changed using another
 //methods.
 
-void BaseTrackView::onAudioNodeGainChanged(float newGainValue,int channel){
+void BaseTrackView::onGainChanged(float newGainValue,int channel){
     if(channel==trackID)
     ui->levelSlider->setValue(newGainValue * 100);
 }

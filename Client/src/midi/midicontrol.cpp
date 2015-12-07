@@ -57,7 +57,7 @@ void MidiControl::filterVolume(MidiMessage *msg)
 
     qCInfo(jtMidi) << "Control Change received: "<<cc<<" value="<<ccValue<<" on channel :"<<channel;
     //emit changeVolume(ccValue);
-    emit gainChanged(ccValue/127.0,channel);
+    //emit gainChanged(ccValue/127.0,channel);
     //mainControl->getInputTrack(inputTrackIndex)->setGain(ccValue/127.0);
 
 }

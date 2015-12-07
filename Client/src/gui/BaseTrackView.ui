@@ -107,10 +107,10 @@
             <enum>Qt::Vertical</enum>
            </property>
            <property name="tickPosition">
-            <enum>QSlider::NoTicks</enum>
+            <enum>QSlider::TicksBothSides</enum>
            </property>
            <property name="tickInterval">
-            <number>0</number>
+            <number>10</number>
            </property>
           </widget>
          </item>
