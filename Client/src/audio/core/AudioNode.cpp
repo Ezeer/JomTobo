@@ -156,12 +156,12 @@ void AudioNode::setPan(float pan) {
     }
     this->pan = pan;
     updateGains();
-    //emit panChanged(this->pan);
+    emit panChanged(this->pan);
 }
 
 void AudioNode::setGain(float gainValue){
     this->gain = gainValue;
-    //emit gainChanged(this->gain);
+    emit gainChanged(this->gain);
 }
 
 
@@ -169,14 +169,14 @@ void AudioNode::setGain(float gainValue){
 void AudioNode::setMuteStatus(bool muteStatus){
     if(this->muted != muteStatus){
         this->muted = muteStatus;
-        //emit muteChanged(muteStatus);
+        emit muteChanged(muteStatus);
     }
 }
 
 void AudioNode::setSoloStatus(bool soloed){
     if(this->soloed != soloed){
         this->soloed = soloed;
-        //emit soloChanged(this->soloed);
+        emit soloChanged(this->soloed);
     }
 }
 

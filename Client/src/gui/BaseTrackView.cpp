@@ -178,7 +178,8 @@ void BaseTrackView::setUnlightStatus(bool unlighted){
     update();
 }
 
-BaseTrackView* BaseTrackView::getTrackViewByID(long trackID){
+BaseTrackView* BaseTrackView::getTrackViewByID(long trackID)
+{
     if(trackViews.contains(trackID)){
         return trackViews[trackID];
     }
