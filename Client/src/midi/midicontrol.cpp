@@ -52,15 +52,15 @@ EControlType MidiControl::filterCtrl(Midi::MidiMessage *msg)
 
 void MidiControl::filterVolume(int value)
 {
-emit gainChanged(value/127.0,channel);
+    //gain range is[-1,1], zero is center
+float val=(value/(127/2.0f)*1.0f);
+emit gainChanged(val,channel);
 }
 
 void MidiControl::filterPan(int value)
 {
     //pan range is[-4,4], zero is center
-float pi=3.14;//0
-    //float val=-4.0+((value/64.0)*4.0);
- float val=-4.0f+(value/(127/2.0f)*4.0f);
+float val=-4.0f+(value/(127/2.0f)*4.0f);
 emit panChanged(val,channel);
 }
 
