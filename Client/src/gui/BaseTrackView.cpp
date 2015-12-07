@@ -48,13 +48,16 @@ void BaseTrackView::bindThisViewWithTrackNodeSignals()
     Audio::AudioNode* trackNode = mainController->getTrackNode(trackID);
     MidiControl * midiCtrl=mainController->getMidiControler();
     Q_ASSERT(trackNode);
-    Q_ASSERT(midiCtrl);
-    QObject::connect(trackNode, SIGNAL(gainChanged(float)), this, SLOT(onAudioNodeGainChanged(float)));
 
-    QObject::connect((QObject*)midiCtrl, SIGNAL(gainChanged(float,int)), this, SLOT(onGainChanged(float,int)));
+    QObject::connect(trackNode, SIGNAL(gainChanged(float)), this, SLOT(onAudioNodeGainChanged(float)));
     QObject::connect(trackNode, SIGNAL(panChanged(float)), this, SLOT(onAudioNodePanChanged(float)));
     QObject::connect(trackNode, SIGNAL(muteChanged(bool)), this, SLOT(onAudioNodeMuteChanged(bool)));
     QObject::connect(trackNode, SIGNAL(soloChanged(bool)), this, SLOT(onAudioNodeSoloChanged(bool)));
+    Q_ASSERT(midiCtrl);
+    QObject::connect((QObject*)midiCtrl, SIGNAL(gainChanged(float,int)), this, SLOT(onGainChanged(float,int)));
+    QObject::connect((QObject*)midiCtrl, SIGNAL(panChanged(float,int)), this, SLOT(onPanChanged(float,int)));
+
+
 }
 
 //++++++  signals emitted by Audio Node +++++++
@@ -65,9 +68,16 @@ void BaseTrackView::bindThisViewWithTrackNodeSignals()
 //only change by user mouse interaction, the values can be changed using another
 //methods.
 
+//MIDICONTROL FUNK
 void BaseTrackView::onGainChanged(float newGainValue,int channel){
     if(channel==trackID)
     ui->levelSlider->setValue(newGainValue * 100);
+}
+//MIDICONTROL FUNK
+void BaseTrackView::onPanChanged(float newPanValue,int channel){
+    //pan range is[-4,4], zero is center
+    if(channel==trackID)
+    ui->panSlider->setValue(newPanValue );
 }
 void BaseTrackView::onAudioNodeGainChanged(float newGainValue){
 
@@ -80,6 +90,7 @@ void BaseTrackView::onAudioNodePanChanged(float newPanValue){
     //pan range is[-4,4], zero is center
     ui->panSlider->setValue(newPanValue * 4);
 }
+
 
 void BaseTrackView::onAudioNodeMuteChanged(bool newMuteStatus){
     ui->muteButton->setChecked(newMuteStatus);

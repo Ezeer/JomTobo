@@ -27,17 +27,18 @@ private:
     MainController* mainControl;
     int channel;//the last channel used
     EControlType filterCtrl(MidiMessage *msg);///to find what control we receive
-    void filterVolume(MidiMessage *msg);
+    void filterVolume(int value);
+    void filterPan(int value);
 
 
  signals :
-    void changeVolume(int volume);
-    void changePan(int volume);
-    void mute(bool on);
-    void solo (bool on);
-    void boost(EBoostLevel lvl);
+    //void changeVolume(int volume);
+    //void changePan(int volume);
+    //void mute(bool on);
+    //void solo (bool on);
+    //void boost(EBoostLevel lvl);
     void gainChanged(float newGain,int channel);
-    //void panChanged(float newPan);
+    void panChanged(float newPan,int channel);
     //void boostChanged(float boostInDecibels);//from top to bottom
     //void muteChanged(bool muteStatus);
     //void soloChanged(bool soloStatus);

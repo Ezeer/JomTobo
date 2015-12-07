@@ -87,10 +87,11 @@ private slots:
 
     //signals emitted by AudioNode class when user activate the controle with mouse, or with midi CCs, or using joystick, or using mind control :)
     void onAudioNodePanChanged(float newPanValue);
-    void onGainChanged(float newGainValue,int channel);//MidiControl
     void onAudioNodeGainChanged(float newGainValue);
     void onAudioNodeMuteChanged(bool newMuteStatus);
     void onAudioNodeSoloChanged(bool newSoloStatus);
+    void onGainChanged(float newGainValue,int channel);//MidiControl
+    void onPanChanged(float newPanValue, int channel);//MidiControl
 
 };
 
