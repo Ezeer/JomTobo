@@ -91,6 +91,9 @@
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="toolTipDuration">
+            <number>-1</number>
+           </property>
            <property name="accessibleDescription">
             <string>This is the volume slider, Moove up to increase the volume or down to decrease it </string>
            </property>

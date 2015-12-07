@@ -8,7 +8,7 @@ MidiControl::MidiControl()
 }
 ///The constructor with MainController pointer
 ///MainController gives access to midi and tracks
-MidiControl::MidiControl(MainController *mCtrl):mainControl(mCtrl)
+MidiControl::MidiControl(MainController *mCtrl):mainControl(mCtrl),channel(1)
 {
 
 }
@@ -21,9 +21,15 @@ MidiBuffer MidiControl::filterMidiMsg(MidiBuffer Buffer)
     for(int m=0; m < messages; m++)
     {
         Midi::MidiMessage msg = midiBuffer.getMessage(m);
-        //filterVolume(&msg);
+        if(!msg.isControl())
+        {
+            //qCInfo(jtMidi) << "NO Control Change received: "<<msg.getData1() ;
+         channel=msg.getChannel();
+
+        }
+
         EControlType ctrl=filterCtrl(&msg);
-        qCInfo(jtMidi) << "Control Change type received: " << ctrl;
+       // qCInfo(jtMidi) << "Control Change type received: " << ctrl;
 
 
     }
@@ -32,12 +38,7 @@ MidiBuffer MidiControl::filterMidiMsg(MidiBuffer Buffer)
 
 EControlType MidiControl::filterCtrl(Midi::MidiMessage *msg)
 {
-   if(!msg->isControl())
-   {
-       //qCInfo(jtMidi) << "NO Control Change received: "<<msg.getData1() ;
-       return none;
 
-   }
 
         switch(msg->getData1())
         {
@@ -51,12 +52,12 @@ EControlType MidiControl::filterCtrl(Midi::MidiMessage *msg)
 
 void MidiControl::filterVolume(MidiMessage *msg)
 {
-    int inputTrackIndex = 0;//just for test for while, we need get this index from the mapping pair
-    char cc = msg->getData1();
-    char ccValue = msg->getData2();
-    qCInfo(jtMidi) << "Control Change received: "<<cc<<" value="<<ccValue ;
-    emit changeVolume(ccValue);
-    emit gainChanged(ccValue/127.0);
+    int cc = msg->getData1();
+    int ccValue = msg->getData2();
+
+    qCInfo(jtMidi) << "Control Change received: "<<cc<<" value="<<ccValue<<" on channel :"<<channel;
+    //emit changeVolume(ccValue);
+    emit gainChanged(ccValue/127.0,channel);
     //mainControl->getInputTrack(inputTrackIndex)->setGain(ccValue/127.0);
 
 }

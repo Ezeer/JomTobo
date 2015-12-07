@@ -128,7 +128,7 @@ private:
     void updateGains();
 
 signals:
-   // void gainChanged(float newGain);
+    void gainChanged(float newGain);
     void panChanged(float newPan);
     //void boostChanged(float boostInDecibels);//from top to bottom
     void muteChanged(bool muteStatus);
