@@ -616,6 +616,7 @@ void MainController::doAudioProcess(const Audio::SamplesBuffer &in, Audio::Sampl
     MidiBuffer bufferMidi=midiController->filterMidiMsg(midiDriver ? midiDriver->getBuffer() : MidiBuffer(0));
     //bool hasMidiControl;
     audioMixer.process(in, out, sampleRate,bufferMidi);
+
 }
 
 
