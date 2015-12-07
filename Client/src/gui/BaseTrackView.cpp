@@ -71,7 +71,7 @@ void BaseTrackView::bindThisViewWithTrackNodeSignals()
 //MIDICONTROL FUNK
 void BaseTrackView::onGainChanged(float newGainValue,int channel){
     if(channel==trackID)
-    ui->levelSlider->setValue(newGainValue * 100);
+    ui->levelSlider->setValue(newGainValue );
 }
 //MIDICONTROL FUNK
 void BaseTrackView::onPanChanged(float newPanValue,int channel){

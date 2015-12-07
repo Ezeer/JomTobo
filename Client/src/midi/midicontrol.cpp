@@ -54,7 +54,7 @@ void MidiControl::filterVolume(int value)
 {
     //gain range is[-1,1], zero is center
 float val=(value/(127/2.0f)*1.0f);
-emit gainChanged(val,channel);
+emit gainChanged(value,channel);
 }
 
 void MidiControl::filterPan(int value)

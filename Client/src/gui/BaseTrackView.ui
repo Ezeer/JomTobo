@@ -98,7 +98,7 @@
             <string>This is the volume slider, Moove up to increase the volume or down to decrease it </string>
            </property>
            <property name="maximum">
-            <number>120</number>
+            <number>127</number>
            </property>
            <property name="value">
             <number>100</number>

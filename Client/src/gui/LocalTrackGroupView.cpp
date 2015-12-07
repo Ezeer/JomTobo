@@ -108,7 +108,7 @@ void LocalTrackGroupView::on_addChannelClicked(){
     mainFrame->addChannelsGroup("new channel");
 }
 
-//NOT WORKING
+
 bool LocalTrackGroupView::eventFilter(QObject *target, QEvent *event)
 {
     bool val= QObject::eventFilter(target, event);
