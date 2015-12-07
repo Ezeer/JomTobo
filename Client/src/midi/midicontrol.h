@@ -36,7 +36,7 @@ private:
     void mute(bool on);
     void solo (bool on);
     void boost(EBoostLevel lvl);
-    //void gainChanged(float newGain,int channel);
+    void gainChanged(float newGain,int channel);
     //void panChanged(float newPan);
     //void boostChanged(float boostInDecibels);//from top to bottom
     //void muteChanged(bool muteStatus);

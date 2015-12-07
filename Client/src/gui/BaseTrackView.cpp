@@ -43,14 +43,15 @@ BaseTrackView::BaseTrackView(Controller::MainController *mainController, long tr
     setAttribute(Qt::WA_NoBackground);
 }
 
-void BaseTrackView::bindThisViewWithTrackNodeSignals(){
+void BaseTrackView::bindThisViewWithTrackNodeSignals()
+{
     Audio::AudioNode* trackNode = mainController->getTrackNode(trackID);
-    //MidiControl * midiCtrl=mainController->getMidiControler();
+    MidiControl * midiCtrl=mainController->getMidiControler();
     Q_ASSERT(trackNode);
-    //Q_ASSERT(midiCtrl);
+    Q_ASSERT(midiCtrl);
     QObject::connect(trackNode, SIGNAL(gainChanged(float)), this, SLOT(onAudioNodeGainChanged(float)));
 
-    //QObject::connect((QObject*)midiCtrl, SIGNAL(gainChanged(float,int)), this, SLOT(onGainChanged(float,int)));
+    QObject::connect((QObject*)midiCtrl, SIGNAL(gainChanged(float,int)), this, SLOT(onGainChanged(float,int)));
     QObject::connect(trackNode, SIGNAL(panChanged(float)), this, SLOT(onAudioNodePanChanged(float)));
     QObject::connect(trackNode, SIGNAL(muteChanged(bool)), this, SLOT(onAudioNodeMuteChanged(bool)));
     QObject::connect(trackNode, SIGNAL(soloChanged(bool)), this, SLOT(onAudioNodeSoloChanged(bool)));
